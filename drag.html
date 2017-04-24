@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Do drag operation by Javascript</title>
     <style type="text/css">
         .container {
             width: 100%;
@@ -54,23 +54,20 @@
                 var areaR = R0 + 10;
                 var W = left.offsetWidth;
 
-                //判断改变方向
-                //左
+                //determine the direction
+                //left
                 var changeL = mouseDownX < areaR;
-                //右
+                //right
                 var changeR = mouseDownX > areaR;
 
                 document.onmousemove = function (ev) {
                     var ev = ev || event;
                     var mouseMoveX = ev.clientX;
+                    //right
                     if (changeR) {
-                        console.log(mouseDownX, mouseMoveX, W);
-
                         left.style.width = (mouseDownX - mouseMoveX) + W + "px";
-                        //left.style.left = L0 - (mouseDownX - mouseMoveX) + 'px';
-                        //left.style.width = 0 + "px";
                     }
-                    // 右
+                    //left
                     if (changeL) {
                         left.style.width = (mouseMoveX - mouseDownX) + W + 'px';
                     }
@@ -78,7 +75,7 @@
 
                 document.onmouseup = function () {
                     document.onmousemove = null;
-                    // 释放全局捕获
+                    //release global capture
                     if (left.releaseCapture) {
                         left.releaseCapture();
                     }
